@@ -1,9 +1,18 @@
-pipeline { 
+pipeline {
     agent any
     stages {
-        stage('Build step') {
+        stage('Build') {
             steps {
-                sh "sh setup.sh"
+                sh '''
+                
+                '''
+           }
+        }
+        stage('Deploy') {
+            steps {
+                sh '''
+                
+                '''
             }
         }
     }
