@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        GCR_CREDENTIALS_ID = 'artifact-key' // The ID you provided in Jenkins credentia>
+        GCR_CREDENTIALS_ID = 'artifact-key' // The ID you provided in Jenkins credentials
         IMAGE_NAME = 'rftestbuild'
         GCR_URL = 'gcr.io/lbg-mea-build-c19'
     }
@@ -10,8 +10,8 @@ pipeline {
             steps {
                 script {
                     // Authenticate with Google Cloud
-                    withCredentials([file(credentialsId: GCR_CREDENTIALS_ID, variable: >
-                        sh 'gcloud auth activate-service-account --key-file=$GOOGLE_APP>'
+                    withCredentials([file(credentialsId: GCR_CREDENTIALS_ID, variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                        sh 'gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS'
                     }
                 // Configure Docker to use gcloud as a credential helper
                 sh 'gcloud auth configure-docker --quiet'
